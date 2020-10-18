@@ -10,6 +10,7 @@ In case you want to build your own Jack-O-Lantern
 * [WS2812 8 LED Strip](https://www.amazon.com/Comidox-Channel-Color-Driven-Development-Arduino/dp/B07KD55QKJ)
 * [PIR Motion Sensor](https://www.amazon.com/gp/product/B012ZZ4LPM)
 * [SD Memory Card](https://www.amazon.com/Lexar-Professional-633x-32GB-UHS-I/dp/B012PL6EMY/)
+* [USB Battery Pack](https://www.amazon.com/s?k=usb+battery+pack) - most any portable charger will work fine.
 
 ## Wiring Diagram
 Coming soon!

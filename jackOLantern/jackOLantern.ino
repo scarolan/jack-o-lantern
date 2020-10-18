@@ -3,15 +3,17 @@
  * Uses a PIR motion sensor to detect trick-or-treaters, triggering music and sound effects.
  * Tested with a Seeeduino Xiao but should be compatible with any Arduino board.
  * Uses the DFPlayer Mini MP3 player for music and WS2812b LEDs for the visuals.
+ * 
+ * Author: Sean Carolan <scarolan@gmail.com>
  */
 
 
 #include <WS2812FX.h>
+#include "SoftwareSerial.h"
+#include "DFRobotDFPlayerMini.h"
 #define LED_COUNT 8
 #define LED_PIN 8
 #define SENSOR_PIN 7
-#include "SoftwareSerial.h"
-#include "DFRobotDFPlayerMini.h"
 int soundFX = 0;
 uint8_t myModes[] = {52, 27, 50, 46, 43, 2, 25, 20, 8};
 uint8_t myModeIndex = 0;

@@ -9,6 +9,7 @@ In case you want to build your own Jack-O-Lantern
 * [DFMini MP3 Player Module](https://www.amazon.com/UMLIFE-Player-Module-DFPlayer-Arduino/dp/B07Y2YKYRS)
 * [WS2812 8 LED Strip](https://www.amazon.com/Comidox-Channel-Color-Driven-Development-Arduino/dp/B07KD55QKJ)
 * [PIR Motion Sensor](https://www.amazon.com/gp/product/B012ZZ4LPM)
+* [SD Memory Card](https://www.amazon.com/Lexar-Professional-633x-32GB-UHS-I/dp/B012PL6EMY/)
 
 ## Wiring Diagram
 Coming soon!

@@ -14,6 +14,7 @@
 #define LED_COUNT 8
 #define LED_PIN 8
 #define SENSOR_PIN 7
+#define BUSY_PIN 6
 int soundFX = 0;
 uint8_t myModes[] = {52, 27, 50, 46, 43, 2, 25, 20, 8};
 uint8_t myModeIndex = 0;
@@ -50,21 +51,24 @@ void setup()
   }
   Serial.println(F("DFPlayer Mini online."));
 
-  //Get the total number of tracks
+  // Get the total number of tracks
   soundFX = myDFPlayer.readFileCounts();
   Serial.print(soundFX);
   Serial.println(" sounds were found on the SD card.");
 
-  //Set volume value. From 0 to 30
-  myDFPlayer.volume(30);
+  // Set volume value. From 0 to 30
+  myDFPlayer.volume(3);
 
-  // Initialize the blinkenlights
+  // Initialize das blinkenlights
   Serial.println("Initializing the LEDs.");
   ws2812fx.init();
   ws2812fx.setBrightness(100);
   ws2812fx.setSpeed(500);
   ws2812fx.setMode(FX_MODE_FIRE_FLICKER);
   ws2812fx.start();
+
+  // Enable the busy pin
+  pinMode(BUSY_PIN, INPUT);
 }
 
 void playFX() {
@@ -91,9 +95,12 @@ void loop()
   ws2812fx.service();
   int sensorValue = analogRead(SENSOR_PIN);
   //Serial.println(sensorValue);
+  int isBusy = digitalRead(BUSY_PIN);
   if (sensorValue < 128) {
     //Serial.println("Motion detected.");
-    if (millis() - timer > 3000) {
+    // Let current track finish before starting a new one.
+    // Busy pin must be HIGH (no track playing) and 3 seconds passed
+    if (isBusy == HIGH && (millis() - timer > 3000)) {
       timer = millis();
       playFX();
       playLights();
@@ -103,11 +110,13 @@ void loop()
     }
   }
   // If we're not doing anything, reset to fire flicker
-  if (millis() - timer > 60000) {
+  if (isBusy == HIGH && (millis() - timer > 10000)) {
     Serial.println("Resetting to fire flicker soft.");
     ws2812fx.setMode(FX_MODE_FIRE_FLICKER);
     timer = millis();
   }
+  // What's the busy pin doing?
+  // Serial.println(digitalRead(BUSY_PIN));
 }
 
 // Useful error messages for the DFPlayer mini

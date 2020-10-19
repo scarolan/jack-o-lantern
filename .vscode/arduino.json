@@ -1,0 +1,6 @@
+{
+    "programmer": "AVR ISP",
+    "board": "Seeeduino:samd:seeed_XIAO_m0",
+    "configuration": "usbstack=arduino,debug=off",
+    "port": "COM11"
+}
